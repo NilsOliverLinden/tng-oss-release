@@ -11,18 +11,17 @@ jobs:
           git clone https://github.com/NilsOliverLinden/junit-dataprovider.git
       - name: Set environment variables
         run: |
-          set -e
-          export TEST=VARIABLE
-          export ORG_GRADLE_PROJECT_signingKey=${{ secrets.GPG_SIGNING_KEY }}
-          export ORG_GRADLE_PROJECT_signingPassword=${{ secrets.GPG_SIGNING_PASSWORD}}
-          export SONARTYPE_USERNAME=${{ secrets.SONARTYPE_USERNAME }}
-          export SONARTYPE_PASSWORD=${{ secrets.SONARTYPE_PASSWORD }}
-
           echo $TEST
           echo $SONARTYPE_USERNAME
           echo $SONARTYPE_PASSWORD
           echo $ORG_GRADLE_PROJECT_signingKey
           echo $ORG_GRADLE_PROJECT_signingPassword
+        env:
+          TEST: VARIABLE
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_SIGNING_PASSWORD}}
+          SONARTYPE_USERNAME: ${{ secrets.SONARTYPE_USERNAME }}
+          SONARTYPE_PASSWORD: ${{ secrets.SONARTYPE_PASSWORD }}
       - name: Build
         run: |
           cd junit-dataprovider
