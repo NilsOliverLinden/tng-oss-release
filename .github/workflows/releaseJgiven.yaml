@@ -22,7 +22,6 @@ jobs:
           git config user.name $ACTOR
           git config user.email "nils-oliver.linden@tngtech.com"
 
-          env
           ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ACTOR: ${{ github.actor }}
