@@ -17,6 +17,7 @@ jobs:
         run: |
           cd JGiven
           git config --global user.name $ACTOR
+          git config --global user.email "action@github.com"
 
           ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
