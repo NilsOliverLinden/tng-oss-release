@@ -16,7 +16,9 @@ jobs:
       - name: Build & Release
         run: |
           cd JGiven
-          echo $ACTOR
+          git config --global user.name $ACTOR
+
+          ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ACTOR: ${{ github.actor }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
