@@ -19,10 +19,10 @@ jobs:
       - name: Build & Release
         run: |
           cd JGiven
-          ./scripts/release.sh ${{ github.event.inputs.version }}
+          git config user.name $ACTOR
+          git config user.email "nils-oliver.linden@tngtech.com"
 
-          git config user.name "you@example.com"
-          git config user.email "Your Name"
+          ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ACTOR: ${{ github.actor }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
