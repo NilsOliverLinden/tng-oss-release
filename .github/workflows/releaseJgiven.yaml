@@ -1,0 +1,24 @@
+name: Release-junit-dataprovider
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/NilsOliverLinden/JGiven.git
+      - name: Build
+        run: |
+          cd junit-dataprovider
+          ./gradlew --parallel build
+      - name: Publish
+        run: |
+          cd junit-dataprovider
+          ./release.sh
+        env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_SIGNING_PASSWORD}}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
