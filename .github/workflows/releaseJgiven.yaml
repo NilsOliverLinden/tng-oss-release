@@ -21,8 +21,8 @@ jobs:
           cd JGiven
           ./scripts/release.sh ${{ github.event.inputs.version }}
 
-          git config --local user.name $ACTOR
-          git config --local user.email "nils-oliver.linden@tngtech.com"
+          git config --global user.name $ACTOR
+          git config --global user.email "nils-oliver.linden@tngtech.com"
         env:
           ACTOR: ${{ github.actor }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
