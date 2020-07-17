@@ -29,3 +29,5 @@ jobs:
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_SIGNING_PASSWORD}}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GRADLE_PLUGIN_RELEASE_KEY: ${{ secrets.GRADLE_RELEASE_KEY }}
+          GRADLE_PLUGIN_RELEASE_PASSWORD: ${{ secrets.GRADLE_RELEASE_PASSWORD }}
