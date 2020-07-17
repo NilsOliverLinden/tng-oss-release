@@ -1,6 +1,10 @@
-name: Release-junit-dataprovider
+name: Release-JGiven
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'You have to provide a version (e.g. 0.14.0)'
+        required: true
 
 jobs:
   build:
@@ -9,14 +13,10 @@ jobs:
       - name: Checkout
         run: |
           git clone https://github.com/NilsOliverLinden/JGiven.git
-      - name: Build
+      - name: Build & Release
         run: |
-          cd junit-dataprovider
-          ./gradlew --parallel build
-      - name: Publish
-        run: |
-          cd junit-dataprovider
-          ./release.sh
+          cd JGiven
+          ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_SIGNING_PASSWORD}}
