@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          echo https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/NilsOliverLinden/JGiven.git
           git clone https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/NilsOliverLinden/JGiven.git
         env:
           GITHUB_ACTOR: ${{ github.actor }}
@@ -21,6 +20,9 @@ jobs:
         run: |
           cd JGiven
           ./scripts/release.sh ${{ github.event.inputs.version }}
+
+          git config --local user.name $ACTOR
+          git config --local user.email "nils-oliver.linden@tngtech.com"
         env:
           ACTOR: ${{ github.actor }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SIGNING_KEY }}
