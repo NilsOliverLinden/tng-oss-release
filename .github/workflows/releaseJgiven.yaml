@@ -12,13 +12,14 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/NilsOliverLinden/JGiven.git
+          echo https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/NilsOliverLinden/JGiven.git
+          git clone https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/NilsOliverLinden/JGiven.git
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Build & Release
         run: |
           cd JGiven
-          git config --global user.name $ACTOR
-          git config --global user.email "action@github.com"
-
           ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ACTOR: ${{ github.actor }}
