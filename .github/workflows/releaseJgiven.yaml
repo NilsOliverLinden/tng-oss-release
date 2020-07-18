@@ -1,6 +1,10 @@
 name: Release-JGiven
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'You have to provide a version (e.g. 0.14.0)'
+        required: true
 
 jobs:
   build:
@@ -15,11 +19,7 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name $ACTOR
 
-          echo Commiting
-          touch test.txt
-          git add test.txt
-          git commit -m "Add file from github action"
-          git push origin master
+          ./scripts/release.sh ${{ github.event.inputs.version }}
         env:
           ACTOR: ${{ github.actor }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
