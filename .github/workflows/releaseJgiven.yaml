@@ -16,8 +16,8 @@ jobs:
           git clone https://github.com/NilsOliverLinden/JGiven.git
           cd JGiven
 
-          echo Commiting
-          sed -i -e s/version=.*/version=${{ github.event.inputs.version }} gradle.properties
+          echo Commiting version ${{ github.event.inputs.version }}
+          sed -i -e s/version=.*/version=${{ github.event.inputs.version }} --debug gradle.properties
           git add gradle.properties
           git commit -m "Update version to ${{ github.event.inputs.version }}"
 
