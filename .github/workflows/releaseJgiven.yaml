@@ -23,9 +23,4 @@ jobs:
         env:
           ACTOR: ${{ github.actor }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: './JGiven'
-          destination-github-username: 'NilsOliverLinden'
-          destination-repository-name: 'JGiven.git'
-          user-email: 'action@github.com'
 
