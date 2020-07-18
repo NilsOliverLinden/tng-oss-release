@@ -9,17 +9,19 @@ jobs:
       - name: Checkout
         run: |
           echo Cloning
-          git clone https://github.com/NilsOliverLinden/JGiven.git
+          git clone https://$API_TOKEN_GITHUB@github.com/NilsOliverLinden/JGiven.git
           cd JGiven
+
+          git config --global user.email "action@github.com"
+          git config --global user.name $ACTOR
 
           echo Commiting
           touch test.txt
           git add test.txt
           git commit -m "Add file from github action"
-
-      - name: Pushes to another repository
-        uses: cpina/github-action-push-to-another-repository@master
+          git push origin master
         env:
+          ACTOR: ${{ github.actor }}
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: './JGiven'
