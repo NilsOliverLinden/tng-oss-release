@@ -1,4 +1,4 @@
-name: Release-JGiven
+name: PrintEnvironment
 on:
   workflow_dispatch:
 
